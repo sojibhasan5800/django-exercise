@@ -3,6 +3,7 @@
 {% block content %}
 <form method ='POST' action='abc/about/'>
     {% csrf_token %}
+   
     <div class="mb-3">
       <label for="exampleInputName" class="form-label">Name</label>
       <input type="Name" class="form-control" id="exampleInputName" aria-describedby="namelHelp" name='username'>
