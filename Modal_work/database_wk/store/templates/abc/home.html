@@ -10,11 +10,14 @@
      
     <table class="table">
         <thead>
+          <p>i am good table form</p>
           <tr>
             <th scope="col">name</th>
             <th scope="col">roll</th>
             <th scope="col">adress</th>
             <th scope="col">number</th>
+            <th scope="col">Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -24,6 +27,7 @@
             <td>{{st.roll}}</td>
             <td>{{st.adress}}</td>
             <td>{{st.number}}</td>
+            <td><a class="btn btn-danger text-white bg-primary"  href="{% url 'delete_student' st.roll %}">delete</a></td>
           </tr>
          {% endfor %}
     
