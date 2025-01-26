@@ -1,6 +1,17 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
+from .forms import author_form
 # Create your views here.
 
 def authorpage(request):
-    pass
+     if request.method == 'POST':
+          form =  author_form(request.POST)
+          if form.is_valid():
+               form.save()
+               return redirect("author_page")
+               return render(request,'add_author.html',{'form':form})
+     else:
+        form =  author_form()
+        return render(request,'add_author.html',{'form':form})
+   
+              
+     
