@@ -8,7 +8,7 @@ def authorpage(request):
           if form.is_valid():
                form.save()
                return redirect("author_page")
-               return render(request,'add_author.html',{'form':form})
+              
      else:
         form =  author_form()
         return render(request,'add_author.html',{'form':form})
