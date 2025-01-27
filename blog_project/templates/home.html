@@ -15,11 +15,12 @@
             <p class="card-text"> Catagory: 
                 <p  >{% for cat in post.catagori.all %}
                     
-                    <p class=" btn btn-danger " disabled >  {{cat}} <b></b></p>
+                    <p class=" btn btn-primary btn-sm " disabled >  {{cat}} <b></b></p>
                     {% endfor %}
                 </p>
             </p>
-       
+         <a href="{% url 'edit_page' post.id %} " class="btn btn-warning">Edit</a>
+         <a href=" {% url 'delete_page' post.id %}" class="btn btn-danger">Delete</a>
           </div>
         </div>
       </div>
