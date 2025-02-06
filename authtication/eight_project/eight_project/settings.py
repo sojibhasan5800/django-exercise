@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'first_app',
+    'crispy_forms',  # Add this
+    'crispy_bootstrap5', 
+
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  # Set the allowed template packs
+CRISPY_TEMPLATE_PACK = "bootstrap5" 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +61,7 @@ ROOT_URLCONF = 'eight_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
