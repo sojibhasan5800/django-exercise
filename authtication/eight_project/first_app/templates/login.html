@@ -3,4 +3,23 @@
  {% block content %}
  <h3>i am lgoin page !!!!!!!!!!!</h3>
 
+ {% if messages %}
+    {% for ms in messages  %}
+    <small {% if ms.tags %} class="{{ms.tags}}" {% endif %}>{{ms}}</small>
+    {% endfor %}
+{% endif %}
+<div style ="width:50%; margin:auto;">
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+    {% for fm in form  %}
+        {{fm.label_tag}}
+        {{fm}}
+        {{fm.errors | striptags}}
+        <br>
+    {% endfor %}
+    <br>
+    <button class="btn btn-danger">submit</button>
+    </form>
+</div>
+
  {% endblock  %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import registerform
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -23,7 +23,21 @@ def singuppage(request):
 
 def loginpage(request):
     if request.method == 'POST':
-        pass
+        user_data = AuthenticationForm(request=request,data = request.POST )
+        if user_data.is_valid():
+            name =user_data.cleaned_data['username']
+            user_pass = user_data.cleaned_data['password']
+            user = authenticate(username = name, password =user_pass)
+            if user is not None:
+                login(request,user)
+                return redirect('profile_page')
+            else:
+                messages.success(request,"username are password incorrect!")
+   
+    data = AuthenticationForm()
+    return render(request,'login.html',{'form':data})
+
+
 
 
     
