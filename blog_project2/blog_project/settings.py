@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'authors',
     'catagories',
     'posts',
-    'profiles',
     'crispy_forms',  # Add this
     'crispy_bootstrap5', 
 ]

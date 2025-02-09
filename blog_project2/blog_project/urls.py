@@ -23,5 +23,5 @@ urlpatterns = [
     path('author/',include('authors.urls')),
     path('catagori/',include('catagories.urls')),
     path('post/',include('posts.urls')),
-    path('profile/',include('profiles.urls')),
+   
 ]

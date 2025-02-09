@@ -1,11 +1,12 @@
 from django.db import models
 from catagories.models import catagori
-from authors.models import author
+from django.contrib.auth.models import User
 # Create your models here.
 class post(models.Model):
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=50)
     content = models.TextField()
-    catagori = models.ManyToManyField(catagori)
-    author = models.ForeignKey(author,on_delete=models.CASCADE)
+    category = models.ManyToManyField(catagori) # ekta post multiple categorir moddhe thakte pare abar ekta categorir moddhe multiple post thakte pare
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     def __str__(self):
-        return f"Heading: {self.title}"
+        return self.title 
