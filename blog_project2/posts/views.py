@@ -1,11 +1,15 @@
 from django.shortcuts import render,redirect
 from .forms import post_form
 from posts.models import post
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required
 def postpage(request):
    if request.method == 'POST':
          post_forms =  post_form(request.POST)
          if post_forms.is_valid():
+            post_forms.instance.author = request.user
             post_forms.save()
             return redirect("post_page")
               

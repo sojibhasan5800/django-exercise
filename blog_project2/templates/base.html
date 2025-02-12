@@ -38,23 +38,36 @@
               >
             </li>
 
-            {% if request.user.is_authenticate %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'post_page'%}">Add_Post</a>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item mx-3">
+              <a
+                class="nav-link"
+                href="{% url 'post_page' %}"
+                >Add Post</a
+              >
             </li>
-
             {% endif %}
           </ul>
-          <div class="d-flex" role="search">
+
+          <div class="d-flex" >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {% if request.user.is_authenticate %} 
+
+              {% if request.user.is_authenticated %} 
               <li class="nav-item">
                 <button class="btn btn-warning btn-sm">
-                  <a class="nav-link" href="{% url 'register_page'%}"
+                  <a class="nav-link" href="{% url 'profile_page' %}"
                     >Profile</a
                   >
                 </button>
               </li>
+             <li class="nav-item mx-3">
+                <a
+                  class="nav-link btn btn-danger text-dark"
+                  href="{% url 'logout_page' %}"
+                  >Logout</a
+                >
+              </li> 
+
               {% else %}
               <li class="nav-item">
                 <button class="btn btn-warning btn-sm">
@@ -74,26 +87,32 @@
         </div>
       </div>
     </nav>
+    
+
 
     {% for m in messages %}
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="..." />
-        <strong class="me-auto">Message</strong>
+<div class="toast show position-absolute top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="me-auto">Message</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body text-{{ m.tags }}">
+    {{ m }}
+  </div>
+</div>
+{% endfor %}
 
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="toast-body">
-        <h3 class="text- {{m.tags}}">{{m}}</h3>
-      </div>
+
+
+
+    {% comment %} {% for i in messages %}
+    <div class="">
+      <h3 class="text-{{i.tags}}">{{i}}</h3>
     </div>
 
-    {% endfor %} {% block content %}
+    {% endfor %} 
+     {% endcomment %}
+    {% block content %}
     <h1>i am base page</h1>
     {% endblock %}
 

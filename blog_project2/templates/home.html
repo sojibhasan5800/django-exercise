@@ -11,9 +11,9 @@
           <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
             <p class="card-text"> {{post.content}}</p>
-            <p class="card-text"> Author: <b>{{post.author.name}}</b></p>
+            <p class="card-text"> Author: <b>{{post.author.first_name}}</b></p>
             <p class="card-text"> Catagory: 
-                <p  >{% for cat in post.catagori.all %}
+                <p  >{% for cat in post.category.all %}
                     
                     <p class=" btn btn-primary btn-sm " disabled >  {{cat}} <b></b></p>
                     {% endfor %}

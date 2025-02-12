@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  # Set the allowed template packs
 CRISPY_TEMPLATE_PACK = "bootstrap5" 
+LOGIN_URL = '/author/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
