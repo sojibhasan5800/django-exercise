@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm,SetPasswordForm,PasswordChangeForm
 from django.contrib.auth import login,logout,authenticate,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from posts.models import post
 
 # Create your views here.
 
@@ -43,7 +44,8 @@ def loginpage(request):
 
 @login_required
 def profilepage(request):
-    return render(request,'profile.html')
+    data = post.objects.filter(author = request.user)
+    return render(request,'profile.html',{'data':data})
 
 @login_required
 def edit_profilepage(request):
@@ -77,7 +79,11 @@ def chngpasspage(request):
     return render(request,'password_chng.html',{'form': password_cng_form })
 
 
-                
+@login_required
+def delete_post(request,id):
+    delete_post = post.objects.get(pk=id)
+    delete_post.delete()
+    return redirect('profile_page')         
                 
     
     
