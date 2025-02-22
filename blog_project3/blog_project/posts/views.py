@@ -3,10 +3,13 @@ from django.urls import reverse_lazy
 from . import forms
 from . import models
 # Create your views here.
+
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView,DeleteView,DetailView
-from django.views.generic import CreateView
+from django.views.generic import CreateView,UpdateView,DeleteView
+from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib import messages
 @login_required
 def add_post(request):
     if request.method == 'POST': # user post request koreche
@@ -51,13 +54,14 @@ def edit_post(request, id):
     
     return render(request, 'add_post.html', {'form' : post_form})
 
+
 @method_decorator(login_required, name='dispatch')
 class EditPostView(UpdateView):
     model = models.Post
-    form_class = forms.PostForm
-    template_name = 'add_post.html'
-    pk_url_kwarg = 'id'
-    success_url = reverse_lazy('profile')
+    form_class=forms.PostForm
+    template_name='add_post.html'
+    pk_url_kwarg='id'
+    success_url= reverse_lazy('profile')
     
 
 @login_required
@@ -66,13 +70,23 @@ def delete_post(request, id):
     post.delete()
     return redirect('homepage')
 
+
+
+
+    
+    
+
+
+
+
+
 @method_decorator(login_required, name='dispatch')
+
 class DeletePostView(DeleteView):
     model = models.Post
-    template_name = 'delete.html'
+    template_name='delete.html'
     success_url = reverse_lazy('profile')
-    pk_url_kwarg = 'id'
-
+    pk_url_kwarg='id'
 
 class DetailPostView(DetailView):
     model = models.Post

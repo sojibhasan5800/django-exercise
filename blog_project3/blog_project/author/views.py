@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import forms
+from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import  AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login , update_session_auth_hash, logout
 from django.contrib import messages
@@ -50,6 +51,10 @@ def user_login(request):
         form = AuthenticationForm()
         return render(request, 'register.html', {'form' : form, 'type' : 'Login'})
 
+@method_decorator(login_required, name='dispatch')
+class LogoutPostview(LogoutView):
+    def get_success_url(self):
+        return reverse_lazy('register')
 
 class UserLoginView(LoginView):
     template_name = 'register.html'
@@ -70,6 +75,10 @@ class UserLoginView(LoginView):
         return context
 
     
+@method_decorator(login_required, name='dispatch')
+class LogoutPostview(LogoutView):
+    def get_success_url(self):
+        return reverse_lazy('register')
     
     
 

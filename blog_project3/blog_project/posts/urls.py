@@ -9,4 +9,6 @@ urlpatterns = [
     # path('delete/<int:id>', views.delete_post, name='delete_post'),
     path('delete/<int:id>/', views.DeletePostView.as_view(), name='delete_post'),
     path('details/<int:id>/', views.DetailPostView.as_view(), name='detail_post'),
+
+
 ]
